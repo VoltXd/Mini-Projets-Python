@@ -11,12 +11,13 @@ import datetime
 
 class Game:
     TEAM_COLOR_DICT = {"Rouge\n":'red', "Bleu\n":"blue", "Jaune\n":"yellow"}
-    def __init__(self, fileName, gameTitle, location, date):
+    def __init__(self, fileName, gameTitle, location, date, figureName):
         self.players = []
         self.teams = dict()
         self.gameTitle = gameTitle
         self.location = location
         self.date = date
+        self.figureName = figureName
         try:
             f = open(fileName, 'r')
         except:
@@ -128,7 +129,7 @@ class Game:
         
         
         plt.plot()
-        plt.savefig("Lasergame_Partie1.png")
+        plt.savefig(self.figureName + ".png")
                 
 
 class Team:
@@ -162,12 +163,12 @@ class Player:
     
 if (__name__ == "__main__"):
     date = datetime.date(2022, 7, 7)
-    game1 = Game("tableau_score_partie1.csv", "Partie 1", "Massy", date)        
+    game1 = Game("tableau_score_partie1.csv", "Partie 1", "Massy", date, "Lasergame_Partie_1")        
         
     print(game1.GetTeamStats())
     game1.PlotAllStats()
 
-    game2 = Game("tableau_score_partie2.csv", "Partie 2", "Massy", date)        
+    game2 = Game("tableau_score_partie2.csv", "Partie 2", "Massy", date, "Lasergame_Partie_2")        
         
     print(game2.GetTeamStats())
     game2.PlotAllStats()
