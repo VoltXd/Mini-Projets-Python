@@ -116,7 +116,7 @@ def updatePlot(_N, _M, _f1, _A1, _f2, _A2, _phi1, _phi2):
     
     plot1.cla()
     plot1.grid()
-    plot1.set(xlabel=r"$n$", ylabel=r"$x(t)$")
+    plot1.set(title=r"$s(t) = {} \sin (2 \pi {} t + {}) + {} \sin (2 \pi {} t + {})$".format(_A1, _f1, _phi1, _A2, _f2, _phi2), xlabel=r"$n$", ylabel=r"$x(t)$")
     plot1.plot(t_cont, x_cont, '-b')
     plot1.plot(t, x, '+r')
     plot1.legend(['Signal "continu"', r"Signal échantilloné ($N = 2^{{{}}}$)".format(int(np.log2(N)))])
