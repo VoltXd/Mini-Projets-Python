@@ -6,7 +6,7 @@ Created on Fri Oct 28 08:28:54 2022
 """
 
 from tkinter import *
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
@@ -116,21 +116,24 @@ def updatePlot(_N, _M, _f1, _A1, _f2, _A2, _phi1, _phi2):
     
     plot1.cla()
     plot1.grid()
-    plot1.set(xlabel=f"$n$", ylabel=r"$x(t)$")
+    plot1.set(xlabel=r"$n$", ylabel=r"$x(t)$")
     plot1.plot(t_cont, x_cont, '-b')
     plot1.plot(t, x, '+r')
+    plot1.legend(['Signal "continu"', r"Signal échantilloné ($N = 2^{{{}}}$)".format(int(np.log2(N)))])
     
     plot2.cla()
     plot2.grid()
-    plot2.set(xlabel=r"$\nu$", ylabel=r"$|X(\nu)|$", xlim=[-0.02, 1.02], ylim=[-0.02, max(_A1, _A2)+0.02])
+    plot2.set(xlabel=r"$\nu$", ylabel=r"$|X(\nu)|$", xlim=[-0.02, 1.02], ylim=[-0.1*max(np.abs(X_MAX)), max(np.abs(X_MAX))+0.1*max(np.abs(X_MAX))])
     plot2.plot(f_red_MAX, np.abs(X_MAX), '-b')
     plot2.plot(f_red, np.abs(X), '+r')
+    plot2.legend(['Spectre fréquentiel', r"Spectre échantillonée ($M = 2^{{{}}}$)".format(int(np.log2(M)))])
     
     plot3.cla()
     plot3.grid()
     plot3.set(xlabel=r"$\nu$", ylabel=r"$\mathrm{arg}(X(\nu))$", xlim=[-0.02, 1.02], ylim=[-np.pi-0.02, np.pi+0.02])
     plot3.plot(f_red_MAX, np.angle(X_MAX), '-b')
     plot3.plot(f_red, np.angle(X), '+r')
+    plot3.legend(['Phase du spectre', r"Phase échantillonée ($M = 2^{{{}}}$)".format(int(np.log2(M)))])
     
     canvasStep.draw()
     return
